@@ -1,0 +1,16 @@
+{
+  "name": "chai_aur_backend",
+  "version": "1.0.0",
+  "description": "Backend basics",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon src/main.js"
+  },
+  "author": "Khushal",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
+  }
+}
