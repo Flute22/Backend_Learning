@@ -58,7 +58,8 @@ const userSchema = new Schema({
 // Password encryption process
 userSchema.pre("save", async function(next) {
     if (!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 10);
+    
+    this.password = await bcrypt.hash(this.password, 10);
 })
 
 // Creating a method for checking the password is match with encrypted password
@@ -82,9 +83,6 @@ userSchema.methods.generateAccessToken = function() {
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY
         },
-
-
-        
     )
 }
 
