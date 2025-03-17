@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-import { log } from "console";
 
 // fs (file system) is a built-in node module that provides a way to interact with the file system. 
 import fs from "fs";
@@ -19,7 +18,8 @@ const uploadOnCloudinary = async (localFilePath) => {
             resource_type: "auto",
         })
 
-        console.log(`File is uploaded on cloudinary successfully. \n----------> Response: ${response} \n-----------> Url: ${response.url}`)
+        fs.unlinkSync(localFilePath)
+
         return response
 
     } catch (error) {
