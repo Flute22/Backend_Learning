@@ -23,7 +23,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 }
 
 
-// Register User
 const registerUser = asyncHandler( async (req, res) => {
     // Register user
     /* 
@@ -111,7 +110,6 @@ const registerUser = asyncHandler( async (req, res) => {
 
 
 
-// Login User
 const loginUser = asyncHandler( async ( req, res) => {
     // Steps for login user: 
     /* 
@@ -176,7 +174,6 @@ const loginUser = asyncHandler( async ( req, res) => {
 
 
 
-// Logout User
 const logoutUser = asyncHandler( async (req, res) => {
     // First remove the refresh token from the database
     await User.findByIdAndUpdate(
@@ -206,7 +203,6 @@ const logoutUser = asyncHandler( async (req, res) => {
 
 
 
-// Refresh Access Token
 const refreshAccessToken = asyncHandler( async (req, res) => {
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
 
@@ -233,5 +229,7 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
             new ApiResponse(200, { accessToken, newRefreshToken }, "Access token refreshed")
         )
 })
+
+
 
 export { registerUser, loginUser, logoutUser, refreshAccessToken }
