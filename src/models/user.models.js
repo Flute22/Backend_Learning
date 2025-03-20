@@ -63,7 +63,7 @@ userSchema.pre("save", async function(next) {
 })
 
 // Creating a method for checking the password is match with encrypted password
-userSchema.method.isPasswordCorrect = async function() {
+userSchema.methods.isPasswordCorrect = async function(password) {
     return await bcrypt.compare(password, this.password)
 }
 
@@ -88,6 +88,8 @@ userSchema.methods.generateAccessToken = function() {
 
 // Creating a method for generating refresh token
 userSchema.methods.generateRefreshToken = function() {
+    let name = this.fullName;
+
     return jwt.sign(
         {
             _id: this._id,
@@ -100,7 +102,7 @@ userSchema.methods.generateRefreshToken = function() {
         },
 
         function(err, token) {
-            console.log(`Token: ${token}`);
+            console.log(`${name} Refresh Token: ${token}`);
         }
     )
 }
